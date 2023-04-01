@@ -1,31 +1,31 @@
 <template>
   <div>
     <div class="field">
-      <label class="label">Product Name</label>
+      <label class="label">Name</label>
       <div class="control">
         <input
           class="input"
           type="text"
-          placeholder="Product Name"
-          v-model="productName"
+          placeholder="Name"
+          v-model="clientName"
         />
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Price</label>
+      <label class="label">Surname</label>
       <div class="control">
         <input
           class="input"
           type="text"
-          placeholder="Price"
-          v-model="productPrice"
+          placeholder="Surname"
+          v-model="clientSurname"
         />
       </div>
     </div>
 
     <div class="control">
-      <button class="button is-success" @click="updateProduct">UPDATE</button>
+      <button class="button is-success" @click="updateClient">UPDATE</button>
     </div>
   </div>
 </template>
@@ -37,38 +37,38 @@ import axios from "axios";
 export default {
   data() {
     return {
-      productName: "",
-      productPrice: "",
+      clientName: "",
+      clientSurname: "",
     };
   },
   created: function () {
-    this.getProductById();
+    this.getClientById();
   },
   methods: {
     //get product by id
-    async getProductById() {
+    async getClientById() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/products/${this.$route.params.id}`
+          `http://localhost:5000/client/${this.$route.params.code}`
         );
-        this.productName = response.data.product_name;
-        this.productPrice = response.data.product_price;
+        this.clientName = response.data.client_name;
+        this.clientSurname = response.data.client_surname;
       } catch (err) {
         console.log(err);
       }
     },
 
     //update product
-    async updateProduct() {
+    async updateClient() {
       try {
         await axios.put(
-          `http://localhost:5000/products/${this.$route.params.id}`,
+          `http://localhost:5000/client/${this.$route.params.code}`,
           {
-            product_name: this.productName,
-            product_price: this.productPrice,
+            client_name: this.clientName,
+            client_surname: this.clientSurname,
           }
         );
-        (this.productName = ""), (this.productPrice = "");
+        (this.clientName = ""), (this.clientSurname = "");
         this.$router.push("/");
       } catch (err) {
         console.log(err);

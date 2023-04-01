@@ -2,8 +2,8 @@
 import db from "../config/database.js";
 
 //get all products
-export const getProducts = (result) => {
-  db.query("SELECT * FROM product", (err, results) => {
+export const getClient = (result) => {
+  db.query("SELECT * FROM client", (err, results) => {
     if (err) {
       console.log(err);
       result(err, null);
@@ -14,11 +14,9 @@ export const getProducts = (result) => {
 };
 
 //get single product
-export const getProductById = (id, result) => {
+export const getClientById = (code, result) => {
   db.query(
-    "SELECT * FROM PRODUCT WHERE product_id = ?",
-    [id],
-    (err, results) => {
+    "SELECT * FROM Client WHERE Client_code = ?", [code], (err, results) => {
       if (err) {
         console.log(err);
         result(err, null);
@@ -30,8 +28,8 @@ export const getProductById = (id, result) => {
 };
 
 //insert product to databased
-export const insertProduct = (data, result) => {
-  db.query("INSERT INTO product SET ?", [data], (err, results) => {
+export const insertClient = (data, result) => {
+  db.query("INSERT INTO client SET ?", [data], (err, results) => {
     if (err) {
       console.log(err);
       result(err, null);
@@ -42,10 +40,10 @@ export const insertProduct = (data, result) => {
 };
 
 // Update Product to Database
-export const updateProductById = (data, id, result) => {
+export const updateClientById = (data, code, result) => {
   db.query(
-    "UPDATE product SET product_name = ?, product_price = ? WHERE product_id = ?",
-    [data.product_name, data.product_price, id],
+    "UPDATE client SET client_name = ?, client_surname = ?, Date_birth = ?, phone_client = ?, mail_client = ?, passport_series = ?, passport_id = ?, WHERE Client_code = ?",
+    [data.client_name, data.client_surname, data.Date_birth, data.phone_client, data.mail_client, data.passport_series, data.passport_id, code],
     (err, results) => {
       if (err) {
         console.log(err);
@@ -58,8 +56,8 @@ export const updateProductById = (data, id, result) => {
 };
 
 // Delete Product to Database
-export const deleteProductById = (id, result) => {
-  db.query("DELETE FROM product WHERE product_id = ?", [id], (err, results) => {
+export const deleteClientById = (code, result) => {
+  db.query("DELETE FROM client WHERE Client_code = ?", [code], (err, results) => {
     if (err) {
       console.log(err);
       result(err, null);

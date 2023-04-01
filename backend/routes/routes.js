@@ -3,30 +3,30 @@ import express from "express";
 
 //import functions from controller
 import {
-  showProducts,
-  showProductById,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-} from "../controllers/product.js";
+  showClient,
+  showClientById,
+  createClient,
+  updateClient,
+  deleteClient,
+} from "../controllers/client.js";
 
 //init express router
 const router = express.Router();
 
 //get all product
-router.get("/products", showProducts);
+router.get("/client", showClient);
 
 //get single product
-router.get("/products/:id", showProductById);
+router.get("/client/:id", showClientById);
 
 // Create New Product
-router.post("/products", createProduct);
+router.post("/client", createClient);
 
 // Update Product
-router.put("/products/:id", updateProduct);
+router.put("/client/:id", updateClient);
 
 // Delete Product
-router.delete("/products/:id", deleteProduct);
+router.delete("/client/:id", deleteClient);
 
 //export default router
 export default router;

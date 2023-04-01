@@ -6,26 +6,26 @@
     <table class="table is-striped is-bordered mt-2 is-fullwidth">
       <thead>
         <tr>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th class="has-text-centered">Actions</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th class="has-text-centered">Tickets</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.product_id">
+        <tr v-for="item in items" :key="item.Client_code">
           <td>
-            {{ item.product_name }}
+            {{ item.client_name }}
           </td>
-          <td>{{ item.product_price }}</td>
+          <td>{{ item.client_surname }}</td>
           <td class="has-text-centered">
             <router-link
-              :to="{ name: 'Edit', params: { id: item.product_id } }"
+              :to="{ name: 'Edit', params: { id: item.Client_code } }"
               class="button is-info is-small"
               >Edit</router-link
             >
             <a
               class="button is-danger is-small"
-              @click="deleteProduct(item.product_id)"
+              @click="deleteClient(item.Client_code)"
               >Delete</a
             >
           </td>
@@ -46,13 +46,13 @@ export default {
     };
   },
   created() {
-    this.getProducts();
+    this.getClient();
   },
   methods: {
     //get all products
-    async getProducts() {
+    async getClient() {
       try {
-        const response = await axios.get("http://localhost:5000/products");
+        const response = await axios.get("http://localhost:5000/client");
         this.items = response.data;
         console.log(this.items);
       } catch (err) {
@@ -60,10 +60,10 @@ export default {
       }
     },
     //delete product
-    async deleteProduct(id) {
+    async deleteClient(code) {
       try {
-        await axios.delete(`http://localhost:5000/products/${id}`);
-        this.getProducts();
+        await axios.delete(`http://localhost:5000/client/${code}`);
+        this.getClient();
       } catch (err) {
         console.log(err);
       }
