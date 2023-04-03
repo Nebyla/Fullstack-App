@@ -1,15 +1,15 @@
 //import functions from Product model
 import {
-  getProducts,
-  getProductById,
-  insertProduct,
-  updateProductById,
-  deleteProductById,
-} from "../models/productModel.js";
+  getClient,
+  getClientById,
+  insertClient,
+  updateClientById,
+  deleteClientById,
+} from "../models/clientModel.js";
 
 //get all products
-export const showProducts = (req, res) => {
-  getProducts((err, results) => {
+export const showClient = (req, res) => {
+  getClient((err, results) => {
     if (err) {
       res.send(err);
     } else {
@@ -19,8 +19,8 @@ export const showProducts = (req, res) => {
 };
 
 //get single product
-export const showProductById = (req, res) => {
-  getProductById(req.params.id, (err, results) => {
+export const showClientById = (req, res) => {
+  getClientById(req.params.code, (err, results) => {
     if (err) {
       res.send(err);
     } else {
@@ -30,9 +30,9 @@ export const showProductById = (req, res) => {
 };
 
 //create new product
-export const createProduct = (req, res) => {
+export const createClient = (req, res) => {
   const data = req.body;
-  insertProduct(data, (err, results) => {
+  insertClient(data, (err, results) => {
     if (err) {
       res.send(err);
     } else {
@@ -42,10 +42,10 @@ export const createProduct = (req, res) => {
 };
 
 // Update Product
-export const updateProduct = (req, res) => {
+export const updateClient = (req, res) => {
   const data = req.body;
-  const id = req.params.id;
-  updateProductById(data, id, (err, results) => {
+  const code = req.params.code;
+  updateClientById(data, code, (err, results) => {
     if (err) {
       res.send(err);
     } else {
@@ -55,9 +55,9 @@ export const updateProduct = (req, res) => {
 };
 
 // Delete Product
-export const deleteProduct = (req, res) => {
-  const id = req.params.id;
-  deleteProductById(id, (err, results) => {
+export const deleteClient = (req, res) => {
+  const code = req.params.code;
+  deleteClientById(code, (err, results) => {
     if (err) {
       res.send(err);
     } else {

@@ -1,31 +1,95 @@
 <template>
   <div>
     <div class="field">
-      <label class="label">Product Name</label>
+      <label class="label">Name</label>
       <div class="control">
         <input
           class="input"
           type="text"
-          placeholder="Product Name"
-          v-model="productName"
+          placeholder="Name"
+          v-model="clientName"
         />
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Price</label>
+      <label class="label">Surname</label>
       <div class="control">
         <input
           class="input"
           type="text"
-          placeholder="Price"
-          v-model="productPrice"
+          placeholder="Surname"
+          v-model="clientSurname"
         />
       </div>
     </div>
 
+    <div class="field">
+      <label class="label">data_birsday</label>
+      <div class="control">
+        <input
+          class="input"
+          type="date"
+          data-uk-datepicker="{format:'DD.MM.YYYY'}"
+          placeholder="data_birsday"
+          v-model="data_birsday"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Phone</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Phone"
+          v-model="clientPhone"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Mail</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Mail"
+          v-model="clientMail"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Passport Series</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Passport Series"
+          v-model="clientPS"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Passport ID</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Passport ID"
+          v-model="clientPId"
+        />
+      </div>
+    </div>
+    
+
+    
+
     <div class="control">
-      <button class="button is-success" @click="saveProduct">SAVE</button>
+      <button class="button is-success" @click="saveClient">SAVE</button>
     </div>
   </div>
 </template>
@@ -36,19 +100,30 @@ import axios from "axios";
 export default {
   data() {
     return {
-      productName: "",
-      productPrice: "",
+      clientName: "",
+      clientSurname: "",
+      data_birsday: "",
+      clientPhone: "",
+      clientMail: "",
+      clientPS: "",
+      clientPId: "",
     };
   },
   methods: {
     //create new product
-    async saveProduct() {
+    async saveClient() {
       try {
-        await axios.post("http://localhost:5000/products", {
-          product_name: this.productName,
-          product_price: this.productPrice,
+        await axios.post("http://localhost:5000/client", {
+          client_name: this.clientName,
+          client_surname: this.clientSurname,
+          Date_birth: this.data_birsday,
+          phone_client: this.clientPhone,
+          mail_client: this.clientMail,
+          passport_series: this.clientPS,
+          passport_id: this.clientPId,
+
         });
-        (this.productname = ""), (this.productPrice = "");
+        (this.clientName = ""), (this.clientSurname = ""),(this.data_birsday = ""),(this.clientPhone = ""),(this.clientMail = ""), (this.clientPS = ""), (this.clientPId = "");
         this.$router.push("/");
       } catch (err) {
         console.log(err);
