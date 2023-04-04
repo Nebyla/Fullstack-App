@@ -14,10 +14,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.Client_code">
-          <td>
-            {{ item.Departure_City }}
-          </td>
+        <tr v-for="item in items" :key="item.Flight_code">
+          <td>{{ item.Departure_City }}</td>
           <td>{{ item.Departure_time }}</td>
           <td>{{ item.Arrival_time }}</td>
           <td>{{ item.Arrival_City }}</td>
@@ -50,23 +48,23 @@ export default {
     };
   },
   created() {
-    this.getClient();
+    this.getFlight();
   },
   methods: {
     //get all products
-    async getClient() {
+    async getFlight() {
       try {
-        const response = await axios.get("http://localhost:5000/client");
-        this.items = response.fli;
+        const response = await axios.get("http://localhost:5000/flight");
+        this.items = response.data;
         console.log(this.items);
       } catch (err) {
         console.log(err);
       }
     },
     //delete product
-    async deleteClient(code) {
+    async deleteClient(id) {
       try {
-        await axios.delete(`http://localhost:5000/client/${code}`);
+        await axios.delete(`http://localhost:5000/client/${id}`);
         this.getClient();
       } catch (err) {
         console.log(err);

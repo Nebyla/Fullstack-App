@@ -25,7 +25,7 @@
     </div>
 
     <div class="field">
-      <label class="label">data_birsday</label>
+      <label class="label">Дата рождение</label>
       <div class="control">
         <input
           class="input"

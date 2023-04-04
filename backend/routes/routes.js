@@ -9,9 +9,19 @@ import {
   updateClient,
   deleteClient,
 } from "../controllers/client.js";
+import { 
+  showFlight,
+  showFlightById,
+} from "../controllers/flight.js";
 
 //init express router
 const router = express.Router();
+
+//get all product
+router.get("/flight", showFlight);
+
+//get single product
+router.get("/flight/:id", showFlightById);
 
 //get all product
 router.get("/client", showClient);

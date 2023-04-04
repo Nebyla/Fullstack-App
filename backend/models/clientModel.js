@@ -2,8 +2,8 @@
 import db from "../config/database.js";
 
 //get all products
-export const getClient = (fli, result) => {
-  db.query("select Departure_City, Departure_time, Arrival_time, Arrival_City from flight", [fli.Departure_City,fli.Departure_time,fli.Arrival_time,fli.Arrival_time],(err, results) => {
+export const getClient = (result) => {
+  db.query("select * from client", (err, results) => {
     if (err) {
       console.log(err);
       result(err, null);
@@ -14,9 +14,9 @@ export const getClient = (fli, result) => {
 };
 
 //get single product
-export const getClientById = (code, result) => {
+export const getClientById = (id, result) => {
   db.query(
-    "SELECT * FROM Client WHERE Client_code = ?", [code], (err, results) => {
+    "SELECT * FROM client WHERE Client_Code = ?", [id], (err, results) => {
       if (err) {
         console.log(err);
         result(err, null);
@@ -40,10 +40,10 @@ export const insertClient = (data, result) => {
 };
 
 // Update Product to Database
-export const updateClientById = (data, code, result) => {
+export const updateClientById = (data, id, result) => {
   db.query(
     "UPDATE client SET client_name = ?, client_surname = ?, Date_birth = ?, phone_client = ?, mail_client = ?, passport_series = ?, passport_id = ?, WHERE Client_code = ?",
-    [data.client_name, data.client_surname, data.Date_birth, data.phone_client, data.mail_client, data.passport_series, data.passport_id, code],
+    [data.client_name, data.client_surname, data.Date_birth, data.phone_client, data.mail_client, data.passport_series, data.passport_id, id],
     (err, results) => {
       if (err) {
         console.log(err);
@@ -56,8 +56,8 @@ export const updateClientById = (data, code, result) => {
 };
 
 // Delete Product to Database
-export const deleteClientById = (code, result) => {
-  db.query("DELETE FROM client WHERE Client_code = ?", [code], (err, results) => {
+export const deleteClientById = (id, result) => {
+  db.query("DELETE FROM client WHERE Client_code = ?", [id], (err, results) => {
     if (err) {
       console.log(err);
       result(err, null);

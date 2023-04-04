@@ -49,7 +49,7 @@ export default {
     async getClientById() {
       try {
         const response = await axios.get(
-          `http://localhost:5000/client/${this.$route.params.code}`
+          `http://localhost:5000/client/${this.$route.params.id}`
         );
         this.clientName = response.data.client_name;
         this.clientSurname = response.data.client_surname;
@@ -62,7 +62,7 @@ export default {
     async updateClient() {
       try {
         await axios.put(
-          `http://localhost:5000/client/${this.$route.params.code}`,
+          `http://localhost:5000/client/${this.$route.params.id}`,
           {
             client_name: this.clientName,
             client_surname: this.clientSurname,
