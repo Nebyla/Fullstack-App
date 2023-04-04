@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="field">
-      <label class="label">Name</label>
+      <label class="label">Имя</label>
       <div class="control">
         <input
           class="input"
@@ -13,7 +13,7 @@
     </div>
 
     <div class="field">
-      <label class="label">Surname</label>
+      <label class="label">Фамилия</label>
       <div class="control">
         <input
           class="input"
@@ -25,7 +25,7 @@
     </div>
 
     <div class="field">
-      <label class="label">data_birsday</label>
+      <label class="label">Дата рождение</label>
       <div class="control">
         <input
           class="input"
@@ -38,7 +38,7 @@
     </div>
 
     <div class="field">
-      <label class="label">Phone</label>
+      <label class="label">Телефон</label>
       <div class="control">
         <input
           class="input"
@@ -50,7 +50,7 @@
     </div>
 
     <div class="field">
-      <label class="label">Mail</label>
+      <label class="label">Почта</label>
       <div class="control">
         <input
           class="input"
@@ -62,7 +62,7 @@
     </div>
 
     <div class="field">
-      <label class="label">Passport Series</label>
+      <label class="label">Серия Паспорта</label>
       <div class="control">
         <input
           class="input"
@@ -74,7 +74,7 @@
     </div>
 
     <div class="field">
-      <label class="label">Passport ID</label>
+      <label class="label">ID Паспорта</label>
       <div class="control">
         <input
           class="input"

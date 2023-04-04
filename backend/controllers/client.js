@@ -20,7 +20,7 @@ export const showClient = (req, res) => {
 
 //get single product
 export const showClientById = (req, res) => {
-  getClientById(req.params.code, (err, results) => {
+  getClientById(req.params.id, (err, results) => {
     if (err) {
       res.send(err);
     } else {
@@ -44,8 +44,8 @@ export const createClient = (req, res) => {
 // Update Product
 export const updateClient = (req, res) => {
   const data = req.body;
-  const code = req.params.code;
-  updateClientById(data, code, (err, results) => {
+  const id = req.params.id;
+  updateClientById(data, id, (err, results) => {
     if (err) {
       res.send(err);
     } else {
@@ -56,8 +56,8 @@ export const updateClient = (req, res) => {
 
 // Delete Product
 export const deleteClient = (req, res) => {
-  const code = req.params.code;
-  deleteClientById(code, (err, results) => {
+  const id = req.params.id;
+  deleteClientById(id, (err, results) => {
     if (err) {
       res.send(err);
     } else {

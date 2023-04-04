@@ -4,10 +4,11 @@ import Create from "../views/Create.vue";
 import Edit from "../views/Edit.vue";
 
 const routes = [
-  {
+  {    
     name: "Index",
     path: "/",
     component: Index,
+    props: true
   },
   {
     name: "Edit",
