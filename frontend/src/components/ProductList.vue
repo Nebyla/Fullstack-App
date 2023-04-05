@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-link :to="{ name: 'Create' }" class="button is-success mt-5"
-      >Add New</router-link
+    <router-link :to="{ name: 'About' }" class="button is-success mt-5"
+      >Клиенты</router-link
     >
     <table class="table is-striped is-bordered mt-2 is-fullwidth">
       <thead>
@@ -21,14 +21,9 @@
           <td>{{ item.Arrival_City }}</td>
           <td class="has-text-centered">
             <router-link
-              :to="{ name: 'Edit', params: { id: item.Client_code } }"
+              :to="{ name: 'Create', params: { id: item.Client_code } }"
               class="button is-info is-small"
-              >Edit</router-link
-            >
-            <a
-              class="button is-danger is-small"
-              @click="deleteClient(item.Client_code)"
-              >Delete</a
+              >Бронировать</router-link
             >
           </td>
         </tr>
@@ -57,15 +52,6 @@ export default {
         const response = await axios.get("http://localhost:5000/flight");
         this.items = response.data;
         console.log(this.items);
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    //delete product
-    async deleteClient(id) {
-      try {
-        await axios.delete(`http://localhost:5000/client/${id}`);
-        this.getClient();
       } catch (err) {
         console.log(err);
       }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <ProductList />
   </div>
 </template>
@@ -15,3 +15,4 @@ export default {
   },
 };
 </script>
+<style></style>

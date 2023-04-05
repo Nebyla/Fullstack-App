@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="field">
-      <label class="label">Name</label>
+      <label class="label">Имя<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
           type="text"
           placeholder="Name"
@@ -11,11 +11,10 @@
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Surname</label>
+      <label class="label">Фамилия<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
           type="text"
           placeholder="Surname"
@@ -23,11 +22,10 @@
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Дата рождение</label>
+      <label class="label">Дата рождение<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
           type="date"
           data-uk-datepicker="{format:'DD.MM.YYYY'}"
@@ -36,35 +34,34 @@
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Phone</label>
+      <label class="label">Телефон<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
-          type="text"
+          type="number"
+          pattern="\(+?(\d{3})\)?[-\.\s]?(\d{3})[-\.\s]?(\d{4})"
           placeholder="Phone"
           v-model="clientPhone"
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Mail</label>
+      <label class="label">Почта<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
-          type="text"
+          type="email"
+          pattern="(\w\.?)+@[\w\.-]+\.\w{2,4}."
           placeholder="Mail"
           v-model="clientMail"
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Passport Series</label>
+      <label class="label">Серия Паспорта<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
           type="text"
           placeholder="Passport Series"
@@ -72,11 +69,10 @@
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Passport ID</label>
+      <label class="label">ID Паспорта<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
           type="text"
           placeholder="Passport ID"
@@ -84,12 +80,8 @@
         />
       </div>
     </div>
-    
-
-    
-
     <div class="control">
-      <button class="button is-success" @click="saveClient">SAVE</button>
+      <button class="button is-success" @click="saveClient">Бронировать</button>
     </div>
   </div>
 </template>
@@ -133,4 +125,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+div{
+  left: -32px;
+  position:relative;
+
+}
+.input
+{
+  width: 500px;
+}
+label{left: -32px;
+  position:relative;}
+
+</style>

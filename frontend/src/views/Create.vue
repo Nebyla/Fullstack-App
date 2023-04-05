@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="field">
     <AddProduct />
   </div>
 </template>
@@ -15,3 +15,4 @@ export default {
   },
 };
 </script>
+<style>.field{text-align:left}</style>
