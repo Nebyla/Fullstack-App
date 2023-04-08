@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="drt">
     <div class="field">
       <label class="label">Name</label>
       <div class="control">
@@ -155,4 +155,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.drt{
+  left: -190px;
+  position:relative;
+
+}
+.input
+{
+  width: 500px;
+}
+label{left: px;
+  position:relative;}
+  </style>

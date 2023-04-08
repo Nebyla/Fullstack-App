@@ -1,13 +1,19 @@
+
 <template>
-  <div>
+  
+  <div class="drt" id="root">
     <div class="field">
       <label class="label">Имя<span class="red">*</span></label>
       <div class="control">
         <input required
+        
           class="input"
+          id="name"
           type="text"
           placeholder="Name"
           v-model="clientName"
+          v-for="(item, index) in inputs"
+         
         />
       </div>
     </div>
@@ -16,9 +22,11 @@
       <div class="control">
         <input required
           class="input"
+          id="surname"
           type="text"
           placeholder="Surname"
           v-model="clientSurname"
+          v-for="(item, index) in inputs"
         />
       </div>
     </div>
@@ -27,10 +35,12 @@
       <div class="control">
         <input required
           class="input"
+          id="data"
           type="date"
           data-uk-datepicker="{format:'DD.MM.YYYY'}"
           placeholder="data_birsday"
           v-model="data_birsday"
+          v-for="(item, index) in inputs"
         />
       </div>
     </div>
@@ -39,10 +49,12 @@
       <div class="control">
         <input required
           class="input"
+          id="tel"
           type="number"
           pattern="\(+?(\d{3})\)?[-\.\s]?(\d{3})[-\.\s]?(\d{4})"
           placeholder="Phone"
           v-model="clientPhone"
+          v-for="(item, index) in inputs"
         />
       </div>
     </div>
@@ -51,10 +63,12 @@
       <div class="control">
         <input required
           class="input"
+          id="em"
           type="email"
           pattern="(\w\.?)+@[\w\.-]+\.\w{2,4}."
           placeholder="Mail"
           v-model="clientMail"
+          v-for="(item, index) in inputs"
         />
       </div>
     </div>
@@ -63,9 +77,11 @@
       <div class="control">
         <input required
           class="input"
+          id="seris"
           type="text"
           placeholder="Passport Series"
           v-model="clientPS"
+          v-for="(item, index) in inputs"
         />
       </div>
     </div>
@@ -74,22 +90,27 @@
       <div class="control">
         <input required
           class="input"
+          id="ID"
           type="text"
           placeholder="Passport ID"
           v-model="clientPId"
+          v-for="(item, index) in inputs"
         />
       </div>
     </div>
     <div class="control">
-      <button class="button is-success" @click="saveClient">Бронировать</button>
+      <button  class="button is-success" id="but" @click="saveClient" :disabled="!isButtonEnabled">Бронировать</button>
     </div>
   </div>
 </template>
 
 <script>
+
+ 
 //import axios
 import axios from "axios";
 export default {
+  el: "#root",
   data() {
     return {
       clientName: "",
@@ -100,6 +121,20 @@ export default {
       clientPS: "",
       clientPId: "",
     };
+    inputs:[
+    { value: '' },
+    { value: '' },
+    { value: '' },
+    { value: '' },
+    { value: '' },
+    { value: '' },
+    { value: '' },
+    ]
+  },
+  computed: {
+    isButtonEnabled() {
+      return this.inputs.every(input => input.value !== '');
+    },
   },
   methods: {
     //create new product
@@ -122,12 +157,14 @@ export default {
       }
     },
   },
+
 };
+
 </script>
 
 <style>
-div{
-  left: -32px;
+.drt{
+  left: -190px;
   position:relative;
 
 }
@@ -135,7 +172,7 @@ div{
 {
   width: 500px;
 }
-label{left: -32px;
+label{left: px;
   position:relative;}
 
 </style>

@@ -42,18 +42,18 @@ export const insertClient = (data, result) => {
 // Update Product to Database
 export const updateClientById = (data, id, result) => {
   db.query(
-    "UPDATE client SET Client_Name = ?, Client_Surname = ?, Date_birth = ?, Phone_Client = ?, Mail_Client = ?, Pasport_Series = ?, Passport_ID = ?, WHERE Client_code = ?",
-    [data.Client_Name, data.Client_Surname, data.Date_birth, data.Phone_Client, data.Mail_Client, data.Passport_Series, data.Passport_ID, id],
-    (err, results) => {
-      if (err) {
-        console.log(err);
-        result(err, null);
-      } else {
-        result(null, results);
-      }
-    }
+  "UPDATE client SET Client_Name = ?, Client_Surname = ?, Date_birth = ?, Phone_Client = ?, Mail_Client = ?, Passport_Series = ?, Passport_ID = ? WHERE Client_code = ?",
+  [data.Client_Name, data.Client_Surname, data.Date_birth, data.Phone_Client, data.Mail_Client, data.Passport_Series, data.Passport_ID, id],
+  (err, results) => {
+  if (err) {
+  console.log(err);
+  result(err, null);
+  } else {
+  result(null, results);
+  }
+  }
   );
-};
+  };
 
 // Delete Product to Database
 export const deleteClientById = (id, result) => {
