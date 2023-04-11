@@ -26,3 +26,13 @@ export const getFlightById = (id, result) => {
     }
   );
 };
+export const insertFlight = (data, result) => {
+  db.query("INSERT INTO flight SET ?", [data], (err, results) => {
+    if (err) {
+      console.log(err);
+      result(err, null);
+    } else {
+      result(null, results);
+    }
+  });
+};

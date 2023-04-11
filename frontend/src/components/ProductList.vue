@@ -3,6 +3,9 @@
     <router-link :to="{ name: 'About' }" class="button is-success mt-5"
       >Клиенты</router-link
     >
+    <router-link :to="{ name: 'CreateFlight' }" class="button is-success mt-5"
+      >Добавление Рейсов</router-link
+    >
     <table class="table is-striped is-bordered mt-2 is-fullwidth">
       <thead>
         <tr>

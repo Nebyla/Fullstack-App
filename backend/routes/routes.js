@@ -12,6 +12,7 @@ import {
 import { 
   showFlight,
   showFlightById,
+  createFlight,
 } from "../controllers/flight.js";
 
 //init express router
@@ -22,6 +23,9 @@ router.get("/flight", showFlight);
 
 //get single product
 router.get("/flight/:id", showFlightById);
+
+
+router.post("/flight", createFlight);
 
 //get all product
 router.get("/client", showClient);

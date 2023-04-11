@@ -3,6 +3,7 @@ import Index from "../views/Index.vue";
 import Create from "../views/Create.vue";
 import Edit from "../views/Edit.vue";
 import About from "../views/About.vue";
+import CreateFlight from "../views/CreateFlight.vue";
 
 const routes = [
   {    
@@ -20,6 +21,11 @@ const routes = [
     name: "Create",
     path: "/create",
     component: Create,
+  },
+  {
+    name: "CreateFlight",
+    path: "/createflight",
+    component: CreateFlight,
   },
   {
     path: "/about",
