@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Index from "../views/Index.vue";
 import Create from "../views/Create.vue";
 import Edit from "../views/Edit.vue";
+import About from "../views/About.vue";
 
 const routes = [
   {    
@@ -23,6 +24,7 @@ const routes = [
   {
     path: "/about",
     name: "About",
+    component: About,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

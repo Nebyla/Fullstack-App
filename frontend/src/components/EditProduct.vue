@@ -1,34 +1,35 @@
 <template>
-  <div>
+  <div class="drt">
     <div class="field">
-      <label class="label">Name</label>
+      <label class="label">Имя<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="name"
           type="text"
           placeholder="Name"
-          v-model="clientName"
+          v-model="clientName"  
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Surname</label>
+      <label class="label">Фамилия<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="surname"
           type="text"
           placeholder="Surname"
           v-model="clientSurname"
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Дата рождение</label>
+      <label class="label">Дата рождение<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="data"
           type="date"
           data-uk-datepicker="{format:'DD.MM.YYYY'}"
           placeholder="data_birsday"
@@ -36,57 +37,59 @@
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Phone</label>
-      <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Phone"
-          v-model="clientPhone"
-        />
-      </div>
-    </div>
-
+  <label class="label">Телефон<span class="red">*</span></label>
+  <div class="control">
+    <input 
+      required
+      class="input"
+      type="tel"
+      pattern="^(\+?\d{1,3}[\s-]?)?\d{10,14}$"
+      placeholder="Phone"
+      v-model="clientPhone"
+    />
+  </div>
+  <span v-if="!clientPhone || !isValidPhone(clientPhone)">Пожалуйста, введите корректный номер телефона.</span>
+</div>
     <div class="field">
-      <label class="label">Mail</label>
-      <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Mail"
-          v-model="clientMail"
-        />
-      </div>
-    </div>
-
+  <label class="label">Почта<span class="red">*</span></label>
+  <div class="control">
+    <input 
+      required
+      class="input"
+      type="email"
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      v-model="clientMail"
+    />
+  </div>
+  <span v-if="!clientMail || !isValidEmail(clientMail)">Пожалуйста, введите корректный адрес электронной почты.</span>
+</div>
     <div class="field">
-      <label class="label">Passport Series</label>
+      <label class="label">Серия Паспорта<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="seris"
           type="text"
           placeholder="Passport Series"
           v-model="clientPS"
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Passport ID</label>
+      <label class="label">ID Паспорта<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="ID"
           type="text"
           placeholder="Passport ID"
           v-model="clientPId"
         />
       </div>
     </div>
-
     <div class="control">
-      <button class="button is-success" @click="updateClient">UPDATE</button>
+      <button class="button is-success" @click="saveClient" v-bind:disabled="!clientPId">Бронировать</button>
     </div>
   </div>
 </template>
@@ -110,15 +113,32 @@ export default {
   created: function () {
     this.getClientById();
   },
+  computed: {
+    isClientPIdValid() {
+      return this.clientPId.trim() !== "",this.clientPS.trim() !== "", this.clientMail.trim() !== "", this.clientPhone.trim() !== "", this.data_birsday.trim() !== "", this.clientSurname.trim() !== "", this.clientName.trim() !== "";
+    },
+  },
   methods: {
+    isValidEmail(email) {
+      return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+    },
+    isValidPhone(phone) {
+      return /^(\+?\d{1,3}[\s-]?)?\d{10,14}$/.test(phone)
+    },
     //get product by id
     async getClientById() {
       try {
         const response = await axios.get(
           `http://localhost:5000/client/${this.$route.params.id}`
         );
-        this.clientName = response.data.client_name;
-        this.clientSurname = response.data.client_surname;
+        this.clientName = response.data.Client_Name;
+        this.clientSurname = response.data.Client_Surname;
+        this.data_birsday = response.data.Date_birth;
+        this.clientPhone = response.data.Phone_Client;
+        this.clientMail = response.data.Mail_Client;
+        this.clientPS = response.data.Passport_Series;
+        this.clientPId = response.data.Passport_ID;
+
       } catch (err) {
         console.log(err);
       }
@@ -130,16 +150,16 @@ export default {
         await axios.put(
           `http://localhost:5000/client/${this.$route.params.id}`,
           {
-          client_name: this.clientName,
-          client_surname: this.clientSurname,
+          Client_Name: this.clientName,
+          Client_Surname: this.clientSurname,
           Date_birth: this.data_birsday,
-          phone_client: this.clientPhone,
-          mail_client: this.clientMail,
-          passport_series: this.clientPS,
-          passport_id: this.clientPId,
+          Phone_Client: this.clientPhone,
+          Mail_Client: this.clientMail,
+          Passport_Series: this.clientPS,
+          Passport_ID: this.clientPId,
         });
         (this.clientName = ""), (this.clientSurname = ""),(this.data_birsday = ""),(this.clientPhone = ""),(this.clientMail = ""), (this.clientPS = ""), (this.clientPId = "");
-        this.$router.push("/");
+        this.$router.push("/about");
 
       } catch (err) {
         console.log(err);
@@ -149,4 +169,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.drt{
+  left: -190px;
+  position:relative;
+
+}
+.input
+{
+  width: 500px;
+}
+label{left: px;
+  position:relative;}
+  </style>

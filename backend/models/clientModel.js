@@ -16,7 +16,7 @@ export const getClient = (result) => {
 //get single product
 export const getClientById = (id, result) => {
   db.query(
-    "SELECT * FROM client WHERE Client_Code = ?", [id], (err, results) => {
+    "SELECT * FROM client WHERE Client_code = ?", [id], (err, results) => {
       if (err) {
         console.log(err);
         result(err, null);
@@ -42,18 +42,18 @@ export const insertClient = (data, result) => {
 // Update Product to Database
 export const updateClientById = (data, id, result) => {
   db.query(
-    "UPDATE client SET client_name = ?, client_surname = ?, Date_birth = ?, phone_client = ?, mail_client = ?, passport_series = ?, passport_id = ?, WHERE Client_code = ?",
-    [data.client_name, data.client_surname, data.Date_birth, data.phone_client, data.mail_client, data.passport_series, data.passport_id, id],
-    (err, results) => {
-      if (err) {
-        console.log(err);
-        result(err, null);
-      } else {
-        result(null, results);
-      }
-    }
+  "UPDATE client SET Client_Name = ?, Client_Surname = ?, Date_birth = ?, Phone_Client = ?, Mail_Client = ?, Passport_Series = ?, Passport_ID = ? WHERE Client_code = ?",
+  [data.Client_Name, data.Client_Surname, data.Date_birth, data.Phone_Client, data.Mail_Client, data.Passport_Series, data.Passport_ID, id],
+  (err, results) => {
+  if (err) {
+  console.log(err);
+  result(err, null);
+  } else {
+  result(null, results);
+  }
+  }
   );
-};
+  };
 
 // Delete Product to Database
 export const deleteClientById = (id, result) => {

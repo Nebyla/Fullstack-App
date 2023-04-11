@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-link :to="{ name: 'Create' }" class="button is-success mt-5"
-      >Add New</router-link
+    <router-link :to="{ name: 'About' }" class="button is-success mt-5"
+      >Клиенты</router-link
     >
     <table class="table is-striped is-bordered mt-2 is-fullwidth">
       <thead>
@@ -10,6 +10,7 @@
           <th>Время вылета</th>
           <th>Время прилета</th>
           <th>Город прилета</th>
+          <th>Цена</th>
           <th class="has-text-centered">Бронировать</th>
         </tr>
       </thead>
@@ -19,6 +20,7 @@
           <td>{{ item.Departure_time }}</td>
           <td>{{ item.Arrival_time }}</td>
           <td>{{ item.Arrival_City }}</td>
+          <td>{{ item.Price }}</td>
           <td class="has-text-centered">
             <router-link
               :to="{ name: 'Create', params: { id: item.Client_code } }"
