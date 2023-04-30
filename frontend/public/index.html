@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+      <link rel="icon" href="Plan.png"/>
+      <link rel="stylesheet" href="style/style.css" />
+
+      <title>АвиаБронь</title>
+   </head>
+   <body>
+      <div class="wrapper">
+         <header>
+            <div class="header__container">
+               <div class="header__wrapper">
+                  <a class="header__logo" href="http://localhost:8080/">
+                     <img
+                        class="header__img"
+                        src="Plan.png"
+                        alt=""
+                     />
+                     <h1 style="margin-left: 10px;">АвиаБронь</h1>
+                  </a>
+                  <a href="http://localhost:8080"  style="color:#fff; margin-left: -50px;">Рейсы</a>
+                  <div ><a href="Help.html" class="help__link">Помощь</a></div>
+               </div>
+            </div>
+         </header>
+         <main class="page">
+            <div id="app"></div>
+         </main>
+         <footer>
+            <p>Мустафаев Юнус И-1-21 ©</p> 
+         </footer>
+      </div>
+   </body>
 </html>

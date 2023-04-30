@@ -1,19 +1,14 @@
-
 <template>
-  
-  <div class="drt" id="root">
+  <div>
     <div class="field">
       <label class="label">Имя<span class="red">*</span></label>
       <div class="control">
         <input required
-        
           class="input"
           id="name"
           type="text"
           placeholder="Name"
-          v-model="clientName"
-          v-for="(item, index) in inputs"
-         
+          v-model="clientName"  
         />
       </div>
     </div>
@@ -26,7 +21,6 @@
           type="text"
           placeholder="Surname"
           v-model="clientSurname"
-          v-for="(item, index) in inputs"
         />
       </div>
     </div>
@@ -40,38 +34,37 @@
           data-uk-datepicker="{format:'DD.MM.YYYY'}"
           placeholder="data_birsday"
           v-model="data_birsday"
-          v-for="(item, index) in inputs"
         />
       </div>
     </div>
     <div class="field">
-      <label class="label">Телефон<span class="red">*</span></label>
-      <div class="control">
-        <input required
-          class="input"
-          id="tel"
-          type="number"
-          pattern="\(+?(\d{3})\)?[-\.\s]?(\d{3})[-\.\s]?(\d{4})"
-          placeholder="Phone"
-          v-model="clientPhone"
-          v-for="(item, index) in inputs"
-        />
-      </div>
-    </div>
+  <label class="label">Телефон<span class="red">*</span></label>
+  <div class="control">
+    <input 
+      required
+      class="input"
+      type="tel"
+      pattern="^(\+?\d{1,3}[\s-]?)?\d{10,14}$"
+      placeholder="Phone"
+      v-model="clientPhone"
+    />
+  </div>
+  <span v-if="!clientPhone || !isValidPhone(clientPhone)">Пожалуйста, введите корректный номер телефона.</span>
+</div>
     <div class="field">
-      <label class="label">Почта<span class="red">*</span></label>
-      <div class="control">
-        <input required
-          class="input"
-          id="em"
-          type="email"
-          pattern="(\w\.?)+@[\w\.-]+\.\w{2,4}."
-          placeholder="Mail"
-          v-model="clientMail"
-          v-for="(item, index) in inputs"
-        />
-      </div>
-    </div>
+  <label class="label">Почта<span class="red">*</span></label>
+  <div class="control">
+    <input 
+      required
+      class="input"
+      type="email"
+      placeholder="Email"
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      v-model="clientMail"
+    />
+  </div>
+  <span v-if="!clientMail || !isValidEmail(clientMail)">Пожалуйста, введите корректный адрес электронной почты.</span>
+</div>
     <div class="field">
       <label class="label">Серия Паспорта<span class="red">*</span></label>
       <div class="control">
@@ -81,7 +74,6 @@
           type="text"
           placeholder="Passport Series"
           v-model="clientPS"
-          v-for="(item, index) in inputs"
         />
       </div>
     </div>
@@ -94,23 +86,21 @@
           type="text"
           placeholder="Passport ID"
           v-model="clientPId"
-          v-for="(item, index) in inputs"
         />
       </div>
     </div>
     <div class="control">
-      <button  class="button is-success" id="but" @click="saveClient" :disabled="!isButtonEnabled">Бронировать</button>
+      <router-link :to="{ name: 'Index' }" class="button is-danger is-rounded">Назад</router-link>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button margin-right:100px class="button is-success is-rounded" @click="saveClient" v-bind:disabled="!clientPId" >Бронировать</button>
     </div>
   </div>
 </template>
 
 <script>
-
- 
 //import axios
 import axios from "axios";
 export default {
-  el: "#root",
   data() {
     return {
       clientName: "",
@@ -121,22 +111,19 @@ export default {
       clientPS: "",
       clientPId: "",
     };
-    inputs:[
-    { value: '' },
-    { value: '' },
-    { value: '' },
-    { value: '' },
-    { value: '' },
-    { value: '' },
-    { value: '' },
-    ]
   },
   computed: {
-    isButtonEnabled() {
-      return this.inputs.every(input => input.value !== '');
+    isClientPIdValid() {
+      return this.clientPId.trim() !== "",this.clientPS.trim() !== "", this.clientMail.trim() !== "", this.clientPhone.trim() !== "", this.data_birsday.trim() !== "", this.clientSurname.trim() !== "", this.clientName.trim() !== "";
     },
   },
   methods: {
+    isValidEmail(email) {
+      return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+    },
+    isValidPhone(phone) {
+      return /^(\+?\d{1,3}[\s-]?)?\d{10,14}$/.test(phone)
+    },
     //create new product
     async saveClient() {
       try {
@@ -148,31 +135,32 @@ export default {
           mail_client: this.clientMail,
           passport_series: this.clientPS,
           passport_id: this.clientPId,
-
         });
-        (this.clientName = ""), (this.clientSurname = ""),(this.data_birsday = ""),(this.clientPhone = ""),(this.clientMail = ""), (this.clientPS = ""), (this.clientPId = "");
+        (this.clientName = ""),
+          (this.clientSurname = ""),
+          (this.data_birsday = ""),
+          (this.clientPhone = ""),
+          (this.clientMail = ""),
+          (this.clientPS = ""),
+          (this.clientPId = "");
         this.$router.push("/");
       } catch (err) {
         console.log(err);
       }
     },
   },
-
 };
-
 </script>
 
-<style>
-.drt{
-  left: -190px;
-  position:relative;
-
-}
+<style scoped>
 .input
 {
   width: 500px;
 }
-label{left: px;
-  position:relative;}
+.control {
+  margin-bottom: -6px; /* уменьшить отступ между .field элементами */
+}
+  
+
 
 </style>

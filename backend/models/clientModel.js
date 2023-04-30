@@ -66,3 +66,26 @@ export const deleteClientById = (id, result) => {
     }
   });
 };
+
+export const searchTelClient = (searchTelQuery, result) => {
+  const query = `SELECT * FROM client WHERE Phone_Client LIKE '%${searchTelQuery}%'`;
+  db.query(query, (err, results) => {
+  if (err) {
+  console.log(err);
+  result(err, null);
+  } else {
+  result(null, results);
+  }
+  });
+  };
+  export const searchPSClient = (searchPSQuery, result) => {
+    const query = `SELECT * FROM client WHERE Passport_Series LIKE '%${searchPSQuery}%'`;
+    db.query(query, (err, results) => {
+    if (err) {
+    console.log(err);
+    result(err, null);
+    } else {
+    result(null, results);
+    }
+    });
+    };

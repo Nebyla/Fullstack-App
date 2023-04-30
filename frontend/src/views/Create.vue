@@ -15,4 +15,4 @@ export default {
   },
 };
 </script>
-<style>.field{text-align:left}</style>
+<style></style>

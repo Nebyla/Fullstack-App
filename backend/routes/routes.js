@@ -8,10 +8,16 @@ import {
   createClient,
   updateClient,
   deleteClient,
+  searchTelGenre,
+  searchPSGenre,
 } from "../controllers/client.js";
 import { 
   showFlight,
   showFlightById,
+  createFlight,
+  deleteFlight,
+  searchGenre,
+  searchDataGenre,
 } from "../controllers/flight.js";
 
 //init express router
@@ -20,8 +26,22 @@ const router = express.Router();
 //get all product
 router.get("/flight", showFlight);
 
+router.get("/psgenre", searchPSGenre);
+
+router.get("/telgenre", searchTelGenre);
+
+router.get("/genre", searchGenre);
+
+router.get("/datagenre", searchDataGenre);
+
 //get single product
 router.get("/flight/:id", showFlightById);
+
+
+router.post("/flight", createFlight);
+
+router.delete("/flight/:id", deleteFlight);
+
 
 //get all product
 router.get("/client", showClient);

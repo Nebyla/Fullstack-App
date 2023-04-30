@@ -5,6 +5,8 @@ import {
   insertClient,
   updateClientById,
   deleteClientById,
+  searchTelClient,
+  searchPSClient,
 } from "../models/clientModel.js";
 
 //get all products
@@ -65,3 +67,24 @@ export const deleteClient = (req, res) => {
     }
   });
 };
+export const searchTelGenre = (req, res) => {
+  const keyword = req.query.q;
+  searchTelClient(keyword, (err, results) => {
+  if (err) {
+  res.send(err);
+  } else {
+  res.json(results);
+  }
+  });
+  };
+  export const searchPSGenre = (req, res) => {
+    const keyword = req.query.q;
+    searchPSClient(keyword, (err, results) => {
+    if (err) {
+    res.send(err);
+    } else {
+    res.json(results);
+    }
+    });
+    };
+  

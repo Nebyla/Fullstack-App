@@ -1,34 +1,35 @@
 <template>
-  <div class="drt">
+  <div>
     <div class="field">
-      <label class="label">Name</label>
+      <label class="label">Имя<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="name"
           type="text"
           placeholder="Name"
-          v-model="clientName"
+          v-model="clientName"  
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Surname</label>
+      <label class="label">Фамилия<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="surname"
           type="text"
           placeholder="Surname"
           v-model="clientSurname"
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Дата рождение</label>
+      <label class="label">Дата рождение<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="data"
           type="date"
           data-uk-datepicker="{format:'DD.MM.YYYY'}"
           placeholder="data_birsday"
@@ -36,58 +37,62 @@
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Phone</label>
-      <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Phone"
-          v-model="clientPhone"
-        />
-      </div>
-    </div>
-
+  <label class="label">Телефон<span class="red">*</span></label>
+  <div class="control">
+    <input 
+      required
+      class="input"
+      type="tel"
+      pattern="^(\+?\d{1,3}[\s-]?)?\d{10,14}$"
+      placeholder="Phone"
+      v-model="clientPhone"
+    />
+  </div>
+  <span v-if="!clientPhone || !isValidPhone(clientPhone)">Пожалуйста, введите корректный номер телефона.</span>
+</div>
     <div class="field">
-      <label class="label">Mail</label>
-      <div class="control">
-        <input
-          class="input"
-          type="text"
-          placeholder="Mail"
-          v-model="clientMail"
-        />
-      </div>
-    </div>
-
+  <label class="label">Почта<span class="red">*</span></label>
+  <div class="control">
+    <input 
+      required
+      class="input"
+      type="email"
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      v-model="clientMail"
+    />
+  </div>
+  <span v-if="!clientMail || !isValidEmail(clientMail)">Пожалуйста, введите корректный адрес электронной почты.</span>
+</div>
     <div class="field">
-      <label class="label">Passport Series</label>
+      <label class="label">Серия Паспорта<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="seris"
           type="text"
           placeholder="Passport Series"
           v-model="clientPS"
         />
       </div>
     </div>
-
     <div class="field">
-      <label class="label">Passport ID</label>
+      <label class="label">ID Паспорта<span class="red">*</span></label>
       <div class="control">
-        <input
+        <input required
           class="input"
+          id="ID"
           type="text"
           placeholder="Passport ID"
           v-model="clientPId"
         />
       </div>
     </div>
-
     <div class="control">
-      <button class="button is-success" @click="updateClient">Обновить</button>
-    </div>
+      <router-link :to="{ name: 'Index' }" class="button is-danger is-rounded">Назад</router-link>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button margin-right:100px class="button is-success is-rounded" @click="saveFlight" v-bind:disabled="!data_birsday" >Обновить</button>
+      </div>
   </div>
 </template>
 
@@ -110,7 +115,18 @@ export default {
   created: function () {
     this.getClientById();
   },
+  computed: {
+    isData_BirsdayValid() {
+      return this.data_birsday.trim() !== "";
+    },
+  },
   methods: {
+    isValidEmail(email) {
+      return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+    },
+    isValidPhone(phone) {
+      return /^(\+?\d{1,3}[\s-]?)?\d{10,14}$/.test(phone)
+    },
     //get product by id
     async getClientById() {
       try {

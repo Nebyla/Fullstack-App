@@ -15,4 +15,9 @@ export default {
   },
 };
 </script>
+<style>
+.table {
+  border-radius: 10px;
+}
 
+</style>

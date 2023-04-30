@@ -3,13 +3,15 @@ import Index from "../views/Index.vue";
 import Create from "../views/Create.vue";
 import Edit from "../views/Edit.vue";
 import About from "../views/About.vue";
+import CreateFlight from "../views/CreateFlight.vue";
+import PasswordInput from "../views/AboutView.vue";
 
 const routes = [
   {    
     name: "Index",
     path: "/",
     component: Index,
-    props: true
+    props: true,
   },
   {
     name: "Edit",
@@ -22,6 +24,11 @@ const routes = [
     component: Create,
   },
   {
+    name: "CreateFlight",
+    path: "/createflight",
+    component: CreateFlight,
+  },
+  {
     path: "/about",
     name: "About",
     component: About,
@@ -30,6 +37,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  },
+  {
+    path: '/password',
+    name: 'PasswordInput',
+    component: PasswordInput
   },
 ];
 
