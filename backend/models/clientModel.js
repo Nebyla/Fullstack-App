@@ -89,3 +89,15 @@ export const searchTelClient = (searchTelQuery, result) => {
     }
     });
     };
+    export const getClientTicket = (result) => {
+      db.query(
+        "SELECT * FROM client WHERE client_code = (SELECT MAX(client_code) FROM client);",(err, results) => {
+          if (err) {
+            console.log(err);
+            result(err, null);
+          } else {
+            result(null, results[0]);
+          }
+        }
+      );
+    };

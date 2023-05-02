@@ -5,6 +5,8 @@ import Edit from "../views/Edit.vue";
 import About from "../views/About.vue";
 import CreateFlight from "../views/CreateFlight.vue";
 import PasswordInput from "../views/AboutView.vue";
+import Ticket from "../views/Ticket.vue";
+import Help from "../views/Help.vue";
 
 const routes = [
   {    
@@ -17,6 +19,16 @@ const routes = [
     name: "Edit",
     path: "/edit/:id",
     component: Edit,
+  },
+  {
+    name: "Ticket",
+    path: "/ticket",
+    component: Ticket,
+  },
+  {
+    name: "Help",
+    path: "/Help",
+    component: Help,
   },
   {
     name: "Create",

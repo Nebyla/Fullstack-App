@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <button class="button is-primary is-rounded" @click="searchGenre(),searchDataGenre()">Фильтр</button>
+      <button class="button is-primary is-rounded" @click="searchGenre">Фильтр</button>
 
     </div>
 
@@ -139,7 +139,7 @@ export default {
     async searchGenre(){
         try{
         this.items = []
-        const response = await axios.get(`http://localhost:5000/genre?q=${this.Departure}`)
+        const response = await axios.get(`http://localhost:5000/genre?q=${this.Departure,this.filterPrice}`)
         this.items = response.data
         console.log(this.items)
         console.log(this.genre);
@@ -147,18 +147,6 @@ export default {
         console.log(err)
         }
         },
-        async searchDataGenre(){
-        try{
-        this.items = []
-        const response = await axios.get(`http://localhost:5000/datagenre?q=${this.filterPrice}`)
-        this.items = response.data
-        console.log(this.items)
-        console.log(this.datagenre);
-        
-        } catch (err){
-        console.log(err)
-        }
-        }
         
   },
 };

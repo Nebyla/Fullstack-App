@@ -143,7 +143,7 @@ export default {
           (this.clientMail = ""),
           (this.clientPS = ""),
           (this.clientPId = "");
-        this.$router.push("/");
+        this.$router.push("/ticket");
       } catch (err) {
         console.log(err);
       }

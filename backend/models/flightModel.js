@@ -46,8 +46,8 @@ export const deleteFlightById = (id, result) => {
     }
   });
 };
-export const searchFlight = (searchQuery, result) => {
-  const query = `SELECT * FROM flight WHERE Departure_City LIKE '%${searchQuery}%' AND Price;`;
+export const searchFlight = (searchQuery,searchDataQuery, result) => {
+  const query = `SELECT * FROM flight WHERE Departure_City LIKE '%${searchQuery}%' AND Price LIKE '%${searchDataQuery}%';`;
   db.query(query, (err, results) => {
   if (err) {
   console.log(err);
@@ -57,15 +57,3 @@ export const searchFlight = (searchQuery, result) => {
   }
   });
   };
-
-  export const searchDataFlight = (searchDataQuery, result) => {
-    const query = `SELECT * FROM flight WHERE Price LIKE '%${searchDataQuery}%'`;
-    db.query(query, (err, results) => {
-    if (err) {
-    console.log(err);
-    result(err, null);
-    } else {
-    result(null, results);
-    }
-    });
-    };

@@ -79,7 +79,6 @@ export default {
     multiplyActions() {
     this.searchPSGenre();
     this.searchTelGenre();
-    this.searchPSGenre();
     },
     //get all products
     async getClient() {

@@ -7,6 +7,7 @@ import {
   deleteClientById,
   searchTelClient,
   searchPSClient,
+  getClientTicket,
 } from "../models/clientModel.js";
 
 //get all products
@@ -87,4 +88,12 @@ export const searchTelGenre = (req, res) => {
     }
     });
     };
-  
+    export const showClientTicket = (req, res) => {
+      getClientTicket((err, results) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(results);
+        }
+      });
+    };

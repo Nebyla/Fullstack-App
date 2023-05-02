@@ -4,7 +4,6 @@ import {
     insertFlight,
     deleteFlightById,
     searchFlight,
-    searchDataFlight,
   } from "../models/flightModel.js";
   
   //get all products
@@ -59,15 +58,5 @@ import {
     }
     });
     };
-    export const searchDataGenre = (req, res) => {
-      const keyword = req.query.q;
-      searchDataFlight(keyword, (err, results) => {
-      if (err) {
-      res.send(err);
-      } else {
-      res.json(results);
-      }
-      });
-      };
 
   

@@ -10,6 +10,7 @@ import {
   deleteClient,
   searchTelGenre,
   searchPSGenre,
+  showClientTicket,
 } from "../controllers/client.js";
 import { 
   showFlight,
@@ -17,7 +18,6 @@ import {
   createFlight,
   deleteFlight,
   searchGenre,
-  searchDataGenre,
 } from "../controllers/flight.js";
 
 //init express router
@@ -31,8 +31,6 @@ router.get("/psgenre", searchPSGenre);
 router.get("/telgenre", searchTelGenre);
 
 router.get("/genre", searchGenre);
-
-router.get("/datagenre", searchDataGenre);
 
 //get single product
 router.get("/flight/:id", showFlightById);
@@ -48,6 +46,8 @@ router.get("/client", showClient);
 
 //get single product
 router.get("/client/:id", showClientById);
+
+router.get("/ticket", showClientTicket);
 
 // Create New Product
 router.post("/client", createClient);
